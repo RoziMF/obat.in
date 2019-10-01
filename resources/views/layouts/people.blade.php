@@ -23,7 +23,7 @@
 </head>
 <body>
     <div id="app">
-        <v-toolbar fixed color="white">
+        <v-toolbar fixed color="light-blue accent-3">
           <v-toolbar-items class="hidden-sm-and-down">
             <!-- <div class="container"> -->
                 <v-btn flat class="navbar-brand" href="{{ url('/homepeople') }}">
@@ -34,7 +34,7 @@
                 </button>
 
                 <li class="navbar"><a href="/homepeople">Beranda</a></li>
-                <li class="navbar"><a href="/konsultasi">Konsultasi Dokter</a></li>
+                <li class="navbar"><a href="/konsultasipeople">Konsultasi Dokter</a></li>
                 <li class="navbar"><a href="people.profil">Profil</a></li>
                 <li class="navbar"><form class="navbar-form navbar-left" action="/action_page.php">
                   <div class="input-group">

@@ -38,9 +38,14 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function konsultasi()
+    public function konsultasiPeople()
     {
-        return view('konsultasi');
+        return view('konsultasiPeople');
+    }
+
+    public function konsultasiDokter()
+    {
+        return view('konsultasiDokter');
     }
 
     public function users()

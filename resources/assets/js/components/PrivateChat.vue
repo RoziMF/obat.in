@@ -37,16 +37,16 @@
         <v-footer
                 height="auto"
                 fixed
-                color="grey"
+                color="light-blue accent-3"
         >
             <v-layout row >
-                <v-flex class="ml-2 text-right" xs1>
-                    <v-btn @click="toggleEmo" fab dark small color="pink">
+                <v-flex class="ml-2 text-right" xs3>
+                    <!-- <v-btn @click="toggleEmo" fab dark small color="light-blue darken-3">
                         <v-icon>insert_emoticon </v-icon>
-                    </v-btn>
+                    </v-btn> -->
                 </v-flex>
 
-                <v-flex xs1 class="text-center">
+                <v-flex xs1 class="text-center ml-4">
                     <file-upload
                             :post-action="'/private-messages/'+activeFriend"
                             ref='upload'
@@ -54,11 +54,11 @@
                             @input-file="$refs.upload.active = true"
                             :headers="{'X-CSRF-TOKEN': token}"
                     >
-                        <v-icon class="mt-3">attach_file</v-icon>
+                        <v-icon class="mt-4">attach_file</v-icon>
                     </file-upload>
 
                 </v-flex>
-                <v-flex xs6 >
+                <v-flex xs9 >
                     <v-text-field
                             rows=2
                             v-model="message"
@@ -71,7 +71,7 @@
                 <v-flex xs4>
                     <v-btn
                             @click="sendMessage"
-                            dark class="mt-3 ml-2 white--text" small color="green">send</v-btn>
+                            dark class="mt-3 ml-2 white--text" small color="light-blue darken-3">send</v-btn>
 
 
                 </v-flex>

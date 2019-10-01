@@ -10,12 +10,14 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+
         <!-- Styles -->
         <style>
             html, body {
                 background-color: #fff;
                 color: #636b6f;
-                font-family: 'Raleway', sans-serif;
+                font-family: 'Candal', sans-serif;
                 font-weight: 100;
                 height: 100vh;
                 margin: 0;
@@ -50,7 +52,7 @@
             }
 
             .links > a {
-                color: #636b6f;
+                color: #fff;
                 padding: 0 25px;
                 font-size: 12px;
                 font-weight: 600;
@@ -64,26 +66,32 @@
             }
         </style>
     </head>
-    <body>
+    <body id="banner">
+      <div class="bg-color">
+
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
+                        <a class="white" href="{{ url('/home') }}">Home</a>
                     @else
-                        <a href="{{ route('login') }}">Login</a>
-                        <a href="{{ route('register') }}">Register</a>
+                        <a class="white" href="{{ route('login') }}">Login</a>
+                        <a class="white" href="{{ route('register') }}">Register</a>
                     @endauth
                 </div>
             @endif
 
             <div class="content">
-                <div class="title m-b-md">
+              <h1 class="white">Healthcare at your desk!!</h1>
+              <br><br>
+                <div class="title m-b-md white">
                     WELCOME to OBAT.IN
                 </div>
 
 
             </div>
         </div>
+
+      </div>
     </body>
 </html>

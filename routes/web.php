@@ -24,7 +24,9 @@ Route::get('/homepeople', 'HomeController@people')->name('homepeople');
 Route::get('/homedokter', 'HomeController@dokter')->name('homedokter');
 
 
-Route::get('/konsultasi', 'HomeController@konsultasi')->name('konsultasi');
+Route::get('/konsultasidokter', 'HomeController@konsultasiDokter')->name('konsultasiDokter');
+Route::get('/konsultasipeople', 'HomeController@konsultasiPeople')->name('konsultasiPeople');
+
 Route::get('/users', 'HomeController@users')->name('users');
 
 Route::get('messages', 'MessageController@fetchMessages');
