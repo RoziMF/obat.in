@@ -25,7 +25,7 @@
         </v-list>
 
     </v-flex>
-    
+
     <v-flex id="privateMessageBox" class="messages mb-5" xs9>
         <message-list :user="user" :all-messages="allMessages"></message-list>
 
@@ -98,7 +98,7 @@
       Picker,
       MessageList
     },
-    
+
     data () {
       return {
         message:null,
@@ -206,7 +206,7 @@
         console.log('onrespnse file up',e);
       }
 
-    
+
     },
 
     mounted(){
@@ -228,7 +228,7 @@
                   this.onlineFriends.splice(this.onlineFriends.indexOf(user),1);
                   console.log('leaving',user.name);
               });
-             
+
               Echo.private('privatechat.'+this.user.id)
                 .listen('PrivateMessageSent',(e)=>{
                   console.log('pmessage sent')
@@ -242,7 +242,7 @@
                   if(e.user.id==this.activeFriend){
 
                       this.typingFriend=e.user;
-                      
+
                     if(this.typingClock) clearTimeout();
 
                       this.typingClock=setTimeout(()=>{
@@ -251,11 +251,11 @@
                   }
 
 
-                 
+
             });
 
     }
-    
+
   }
 </script>
 

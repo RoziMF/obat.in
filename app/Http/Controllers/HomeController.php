@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -44,6 +45,15 @@ class HomeController extends Controller
 
     public function users()
     {
-        return User::all();
+
+      if (Auth::user()->akses == "3") {
+        $user = User::where('akses', '=', '1')->get();
+        return $user;
+      }else {
+        $user = User::where('akses', '=', '3')->get();
+        // $user = DB::table('users')->where('akses', 3)->first();
+        return $user;
+      }
+
     }
 }
