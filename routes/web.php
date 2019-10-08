@@ -15,17 +15,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
-
 Auth::routes();
 
-Route::get('/homepeople', 'HomeController@people')->name('homepeople');
+Route::get('/home', 'HomeController@home')->name('home');
+Route::get('/konsultasi', 'HomeController@konsultasi')->name('konsultasi');
 
-Route::get('/homedokter', 'HomeController@dokter')->name('homedokter');
-
-
-Route::get('/konsultasidokter', 'HomeController@konsultasiDokter')->name('konsultasiDokter');
-Route::get('/konsultasipeople', 'HomeController@konsultasiPeople')->name('konsultasiPeople');
 
 Route::get('/users', 'HomeController@users')->name('users');
 

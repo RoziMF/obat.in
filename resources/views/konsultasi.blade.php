@@ -1,4 +1,4 @@
-@extends('layouts.dokter')
+@extends('layouts.main')
 
 @section('content')
 

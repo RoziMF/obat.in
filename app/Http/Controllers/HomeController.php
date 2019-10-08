@@ -23,14 +23,11 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function people()
-    {
-        return view('homepeople');
-    }
+  
 
-    public function dokter()
+    public function home()
     {
-        return view('homedokter');
+        return view('home');
     }
 
     /**
@@ -38,14 +35,11 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function konsultasiPeople()
-    {
-        return view('konsultasiPeople');
-    }
 
-    public function konsultasiDokter()
+
+    public function konsultasi()
     {
-        return view('konsultasiDokter');
+        return view('konsultasi');
     }
 
     public function users()
@@ -56,7 +50,6 @@ class HomeController extends Controller
         return $user;
       }else {
         $user = User::where('akses', '=', '3')->get();
-        // $user = DB::table('users')->where('akses', 3)->first();
         return $user;
       }
 

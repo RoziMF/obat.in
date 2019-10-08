@@ -39,29 +39,4 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
-
-    public function login(Request $request){
-
-      if (Auth::attempt([
-        'email' => $request->email,
-        'password' =>$request->password
-        ]))
-      {
-
-          $user = User::where('email', $request->email)->first();
-
-          if ($user->akses == 1) {
-            return redirect()->route('homepeople');
-          }elseif ($user->akses == 2) {
-            return redirect()->route('homeapotek');
-          }elseif ($user->akses == 3) {
-            return redirect()->route('homedokter');
-          }else {
-            return redirect()->route('homeadmin');
-          }
-
-      }
-      return redirect()->back();
-
-    }
 }

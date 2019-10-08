@@ -26,17 +26,38 @@
         <v-toolbar fixed color="light-blue accent-3">
           <v-toolbar-items class="hidden-sm-and-down">
             <!-- <div class="container"> -->
-                <v-btn flat class="navbar-brand" href="{{ url('/homedokter') }}">
+                <v-btn flat class="navbar-brand" href="{{ url('/home') }}">
                     {{ config('app.name', 'Laravel') }}
                 </v-btn>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <li class="navbar"><a href="/homedokter">Beranda</a></li>
-                <li class="navbar"><a href="/konsultasidokter">Konsultasi Pasien</a></li>
-                <li class="navbar"><a href="people.profil">Profil</a></li>
+                <li class="navbar"><a href="/home">Beranda</a></li>
+                @if(Auth::user()->akses == '1' )
+                <li class="navbar"><a href="/konsultasi">Konsultasi Dokter</a></li>
+                @elseif(Auth::user()->akses == '3' )
+                <li class="navbar"><a href="/konsultasi">Konsultasi Pasien</a></li>
+                @else
 
+                @endif
+
+                <li class="navbar"><a href="/profil">Profil</a></li>
+                @if(Auth::user()->akses == '1' )
+                <li class="navbar"><form class="navbar-form navbar-left" action="/action_page.php">
+                  <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Cari Obat Disini">
+                    <div class=" navbar input-group-btn">
+                      <button class="btn btn-default" type="submit">
+                        <i class="glyphicon glyphicon-search"></i>
+                      </button>
+                    </div>
+                  </div>
+                </form>
+                </li>
+                @else
+
+                @endif
               </v-toolbar-items>
                 <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent"> -->
                     <!-- Left Side Of Navbar -->
