@@ -20,6 +20,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -38,12 +39,14 @@
                 <li class="navbar"><a href="/konsultasi">Konsultasi Dokter</a></li>
                 @elseif(Auth::user()->akses == '3' )
                 <li class="navbar"><a href="/konsultasi">Konsultasi Pasien</a></li>
+                @elseif(Auth::user()->akses == '2' )
+                <li class="navbar"><a href="{{route('obat.index')}}">Daftar Obat</a></li>
                 @else
 
                 @endif
 
                 <li class="navbar"><a href="/profil">Profil</a></li>
-                @if(Auth::user()->akses == '1' )
+                <!-- @if(Auth::user()->akses == '1' )
                 <li class="navbar"><form class="navbar-form navbar-left" action="/action_page.php">
                   <div class="input-group">
                     <input type="text" class="form-control" placeholder="Cari Obat Disini">
@@ -57,7 +60,7 @@
                 </li>
                 @else
 
-                @endif
+                @endif -->
               </v-toolbar-items>
                 <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent"> -->
                     <!-- Left Side Of Navbar -->
@@ -81,7 +84,7 @@
 
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                    {{ Auth::user()->name }} 
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
