@@ -35,4 +35,11 @@ class User extends Authenticatable
     public function med(){
     	return $this->hasMany('App\Obat');
     }
+
+    protected $table = "users";
+
+    public function apotekprofile()
+    {
+    	return $this->hasOne('App\ApotekProfile');
+    }
 }

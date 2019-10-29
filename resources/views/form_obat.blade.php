@@ -23,7 +23,7 @@
                 <label for="inputNama" class="col-sm-3 control-label">Nama Obat</label>
 
                 <div class="col-sm-6">
-                  <input type="text" class="form-control" value="{{ $obat->namaobat }}" name="nama" placeholder="Masukkan Nama Obat">
+                  <input type="text" class="form-control" value="{{ $obat->namaobat }}" name="nama" placeholder="Masukkan Nama Obat" required>
                 </div>
               </div>
 
@@ -31,7 +31,7 @@
                 <label for="inputjumlah" class="col-sm-3 control-label">Stok</label>
 
                 <div class="col-sm-6">
-                  <input type="text" class="form-control" value="{{ $obat->stok }}" name="stok" placeholder="Jumlah Stok">
+                  <input type="text" class="form-control" value="{{ $obat->stok }}" name="stok" placeholder="Jumlah Stok" required>
                 </div>
               </div>
 
@@ -39,7 +39,7 @@
                 <label for="inputharga" class="col-sm-3 control-label">Harga</label>
 
                 <div class="col-sm-6">
-                  <input type="text" class="form-control" value="{{$obat->harga}}" name="harga" placeholder="Harga">
+                  <input type="text" class="form-control" value="{{$obat->harga}}" name="harga" placeholder="Harga" required>
                 </div>
               </div>
 

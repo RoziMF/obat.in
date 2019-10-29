@@ -21,6 +21,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    @yield('styles')
 </head>
 <body>
     <div id="app">
@@ -45,7 +46,11 @@
 
                 @endif
 
-                <li class="navbar"><a href="/profil">Profil</a></li>
+                @if(Auth::user()->akses == '2' )
+                <li class="navbar"><a href="{{route('apotekProfil.index')}}">Profil</a></li>
+                @else
+
+                @endif
                 <!-- @if(Auth::user()->akses == '1' )
                 <li class="navbar"><form class="navbar-form navbar-left" action="/action_page.php">
                   <div class="input-group">
@@ -84,7 +89,7 @@
 
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} 
+                                    {{ Auth::user()->name }}
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -112,5 +117,7 @@
             </v-container>
         </main>
     </div>
+
+    @stack('scripts')
 </body>
 </html>

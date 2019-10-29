@@ -29,3 +29,4 @@ Route::get('/private-messages/{user}', 'MessageController@privateMessages')->nam
 Route::post('/private-messages/{user}', 'MessageController@sendPrivateMessage')->name('privateMessages.store');
 
 Route::resource('obat','ObatController');
+Route::resource('apotekProfil','ApotekProfilController');
