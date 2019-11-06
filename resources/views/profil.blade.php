@@ -17,7 +17,7 @@
         <div class="col-xs-12">
             <!-- /.box-header -->
             <div class="form-title">
-                                    <h4 class="text-center"> Basic Information:</h4>
+                                    <h4 class="text-center"> Informasu Umum :</h4>
                                 </div>
                                 <div class="form-body">
                                     <form class="form-horizontal" >
@@ -48,6 +48,8 @@
                                                 <input type="text" name="jam_tutup" class="form-control" id="jam_tutup" value="{{$profil[0]->jam_tutup}}" disabled>
                                             </div>
                                         </div>
+
+                                        <h4 class="text-center"> Informasi Koordinat :</h4>
 
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Latitude</label>

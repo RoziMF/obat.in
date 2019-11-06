@@ -42,13 +42,35 @@ class ObatController extends Controller
      */
     public function store(Request $request)
     {
-      $obat = new Obat();
-      $obat->apotek_id = $request->input('apotekid');
-      $obat->namaobat = $request->input('nama');
-      $obat->stok = $request->input('stok');
-      $obat->harga = $request->input('harga');
-      $obat->save();
-      return redirect('obat');
+      $messages = [
+        'required' => 'harap semua kolom diisi (:attribute)!',
+        'min' => ':attribute terlalu kecil!',
+        'numeric' => ':attribute harap diisi dengan data yang sesuai!',
+      ];
+
+      $this->validate($request,[
+            'apotekid'=>'required',
+            'nama'=>'required',
+            'stok'=>'required|numeric',
+            'harga'=>'required|numeric|min:1'
+        ], $messages);
+
+        Obat::create([
+          'apotek_id' => $request->apotekid,
+          'namaobat' => $request->nama,
+          'stok' => $request->stok,
+          'harga' => $request->harga
+        ]);
+
+        return redirect('obat')->with('success', 'Data stok telah ditambahkan');
+
+      // $obat = new Obat();
+      // $obat->apotek_id = $request->input('apotekid');
+      // $obat->namaobat = $request->input('nama');
+      // $obat->stok = $request->input('stok');
+      // $obat->harga = $request->input('harga');
+      // $obat->save();
+      // return redirect('obat');
     }
 
     /**

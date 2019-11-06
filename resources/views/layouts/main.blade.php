@@ -21,6 +21,8 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    <!-- <link href="{{ asset('css/bootstrap-glyphicons.css') }}" rel="stylesheet"> -->
+    <!-- <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet"> -->
     @yield('styles')
 </head>
 <body>
@@ -48,16 +50,19 @@
 
                 @if(Auth::user()->akses == '2' )
                 <li class="navbar"><a href="{{route('apotekProfil.index')}}">Profil</a></li>
+
                 @else
 
                 @endif
-                <!-- @if(Auth::user()->akses == '1' )
-                <li class="navbar"><form class="navbar-form navbar-left" action="/action_page.php">
+
+                @if(Auth::user()->akses == '1' )
+                <li class="navbar"><form class="navbar-form navbar-left" action="{{route('cari')}}">
                   <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Cari Obat Disini">
-                    <div class=" navbar input-group-btn">
+                    <input type="text" name="cari" class="form-control" placeholder="Cari Obat Disini" value="{{ old('cari') }}">
+                    <div class="input-group-btn">
                       <button class="btn btn-default" type="submit">
-                        <i class="glyphicon glyphicon-search"></i>
+                        <i>Search</i>
+                         <!-- class="glyphicon glyphicon-search" -->
                       </button>
                     </div>
                   </div>
@@ -65,7 +70,8 @@
                 </li>
                 @else
 
-                @endif -->
+                @endif
+
               </v-toolbar-items>
                 <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent"> -->
                     <!-- Left Side Of Navbar -->

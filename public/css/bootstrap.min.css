@@ -4247,6 +4247,7 @@ select[multiple].input-group-sm>.form-control, select[multiple].input-group-sm>.
 
 .input-group-btn {
   position: relative;
+  margin-bottom: 20px;
   font-size: 0;
   white-space: nowrap
 }

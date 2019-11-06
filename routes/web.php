@@ -20,6 +20,8 @@ Auth::routes();
 Route::get('/home', 'HomeController@home')->name('home');
 Route::get('/konsultasi', 'HomeController@konsultasi')->name('konsultasi');
 
+Route::get('/search', 'SearchController@index')->name('search');
+Route::get('/cari', 'SearchController@cari')->name('cari');
 
 Route::get('/users', 'HomeController@users')->name('users');
 
@@ -30,3 +32,5 @@ Route::post('/private-messages/{user}', 'MessageController@sendPrivateMessage')-
 
 Route::resource('obat','ObatController');
 Route::resource('apotekProfil','ApotekProfilController');
+
+Route::get('/apotek', 'ApotekController@index')->name('apotek');

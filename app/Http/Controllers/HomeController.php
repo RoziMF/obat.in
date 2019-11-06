@@ -23,7 +23,7 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-  
+
 
     public function home()
     {
@@ -53,5 +53,10 @@ class HomeController extends Controller
         return $user;
       }
 
+    }
+
+    public function cari()
+    {
+        return view('search');
     }
 }

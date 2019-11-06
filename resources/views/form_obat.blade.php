@@ -8,6 +8,16 @@
       <h3 class="box-title">Form Data Obat</h3>
 </div>
 
+@if (count($errors) > 0)
+    <div class="alert alert-danger">
+        <ul>
+             @foreach ($errors->all() as $error)
+              <li>{{ $error }}</li>
+             @endforeach
+        </ul>
+    </div>
+@endif
+
 <div class="box-body">
     @if($obat->id > 0)
     <form class="form-horizontal" method="post" action="{{ route('obat.update', $obat->id) }}">
@@ -42,6 +52,14 @@
                   <input type="text" class="form-control" value="{{$obat->harga}}" name="harga" placeholder="Harga" required>
                 </div>
               </div>
+
+              <!-- <div class="form-group">
+                <label for="gambarobat" class="col-sm-3 control-label">Foto Obat</label>
+
+                <div class="col-sm-6">
+                  <input type="file" class="form-control" value="{{$obat->gambar}}" name="gambar" required>
+                </div>
+              </div> -->
 
             <!-- /.box-body -->
             <div class="box-footer col-sm-offset-7 col-sm-2">

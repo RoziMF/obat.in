@@ -13,7 +13,6 @@
         <div class="col-xs-12">
             <!-- /.box-header -->
             <div class="form-title">
-                                    <h4 class="text-center"> Basic Information:</h4>
                                 </div>
                                 <div class="form-body">
 
