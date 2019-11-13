@@ -14,7 +14,7 @@ class CreateApotekProfilesTable extends Migration
     public function up()
     {
         Schema::create('apotek_profiles', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('profileid');
             $table->string('alamat');
             $table->string('jam_buka');
             $table->string('jam_tutup');

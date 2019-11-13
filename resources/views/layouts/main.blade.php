@@ -37,7 +37,10 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
+                <!-- menu1 -->
                 <li class="navbar"><a href="/home">Beranda</a></li>
+
+                <!-- menu2 -->
                 @if(Auth::user()->akses == '1' )
                 <li class="navbar"><a href="/konsultasi">Konsultasi Dokter</a></li>
                 @elseif(Auth::user()->akses == '3' )
@@ -48,11 +51,19 @@
 
                 @endif
 
+                <!-- menu3 -->
                 @if(Auth::user()->akses == '2' )
                 <li class="navbar"><a href="{{route('apotekProfil.index')}}">Profil</a></li>
 
                 @else
 
+                @endif
+
+                <!-- menu4 -->
+                @if(Auth::user()->akses == '3' )
+
+                @else
+                  <li class="navbar"><a href="{{route('order')}}">Riwayat Order</a></li>
                 @endif
 
                 @if(Auth::user()->akses == '1' )

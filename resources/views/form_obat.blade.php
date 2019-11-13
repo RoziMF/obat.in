@@ -19,8 +19,8 @@
 @endif
 
 <div class="box-body">
-    @if($obat->id > 0)
-    <form class="form-horizontal" method="post" action="{{ route('obat.update', $obat->id) }}">
+    @if($obat->obatid > 0)
+    <form class="form-horizontal" method="post" action="{{ route('obat.update', $obat->obatid) }}">
       @csrf
       @method('PUT')
     @else

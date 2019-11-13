@@ -33,4 +33,26 @@ Route::post('/private-messages/{user}', 'MessageController@sendPrivateMessage')-
 Route::resource('obat','ObatController');
 Route::resource('apotekProfil','ApotekProfilController');
 
-Route::get('/apotek', 'ApotekController@index')->name('apotek');
+Route::get('/apotek/{id}', 'ApotekController@index')->name('apotek');
+
+Route::post('/orderProduct', [
+        'as'	=>	'product.order',
+        'uses' 	=>	'OrderController@productOrder'
+    ]);
+
+Route::get('/remove/product/{id}', [
+        'as'	=>	'product.remove',
+        'uses' 	=>	'OrderController@remove'
+    ]);
+
+Route::post('/payment', [
+        'as'	=>	'product.payment',
+        'uses' 	=>	'OrderController@payment'
+    ]);
+
+    Route::put('/statusorder/{id}', [
+            'as'	=>	'order.status',
+            'uses' 	=>	'OrderController@status'
+        ]);
+
+Route::get('/order', 'OrderController@history')->name('order');

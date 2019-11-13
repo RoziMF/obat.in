@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ApotekProfile extends Model
 {
+    protected $primaryKey = 'profileid';
     protected $table = "apotek_profiles";
 
     protected $fillable = ['user_id','alamat','jam_buka','jam_tutup'];

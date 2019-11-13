@@ -42,4 +42,8 @@ class User extends Authenticatable
     {
     	return $this->hasOne('App\ApotekProfile');
     }
+
+    public function orders(){
+    	return $this->hasMany('App\OrderProduct');
+    }
 }

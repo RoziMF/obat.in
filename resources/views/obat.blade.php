@@ -30,7 +30,7 @@
                   <td>{{$value->namaobat}}</td>
                   <td>{{$value->stok}}</td>
                   <td>{{$value->harga}}</td>
-                  <td><a href="{{ route('obat.edit', $value->id)}}" class="btn btn-warning">Edit</a></td>
+                  <td><a href="{{ route('obat.edit', $value->obatid)}}" class="btn btn-warning">Edit</a></td>
                 @endforeach
               </table>
             </div>
