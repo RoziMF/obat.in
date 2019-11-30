@@ -23,22 +23,13 @@ public function productOrder(Request $request)
     $Qty_left = $productItem->stok;
     if ($qty > $Qty_left){
 
-        $notification = [
-            'message' => 'This product is out of quantity!',
-            'alert-type' => 'error'
-        ];
-        return redirect()->back()->with($notification);
+        return redirect()->back()->with('error', 'Stok tidak mencukupi!!');
     }
 
 
    Cart::add($productItem ->obatid, $productItem ->namaobat, $qty, $productItem ->harga);
 
-    $notification = [
-        'message' => 'A product is successfully added to your cart!',
-        'alert-type' => 'success'
-    ];
-
-    return redirect()->back()->with($notification);
+    return redirect()->back()->with('success', 'Obat telah dimasukkan ke keranjang!!');
 }
 
 
@@ -95,12 +86,7 @@ public function payment(Request $request)
 
     Cart::destroy();
 
-    $notification = [
-        'message' => 'Order is successfully processed!',
-        'alert-type' => 'success'
-    ];
-
-    return redirect(route('order'))->with($notification);
+    return redirect(route('aktiforder'))->with('success', 'Order Sukses -- segera ambil pesanan anda diapotek');
 }
 
 
@@ -108,12 +94,8 @@ public function payment(Request $request)
 public function remove($id)
 {
     Cart::remove($id);
-    $notification = [
-        'message' => 'An product is successfully removed .!',
-        'alert-type' => 'success'
-    ];
 
-    return redirect()->back()->with($notification);
+    return redirect()->back()->with('success', 'Obat telah dihapus!!');
 }
 
 public function history()
@@ -127,6 +109,7 @@ public function history()
       ->join('users', 'users.id', '=', 'obats.apotek_id')
       ->join('order_products', 'order_products.product_id', '=', 'obats.obatid')
       ->where('order_products.user_id','=', $id)
+      ->where('order_products.status','=','1')
       ->orderBy('order_products.created_at', 'desc');
     $order2 = $order2->get();
 
@@ -142,6 +125,7 @@ public function history()
       ->join('users', 'users.id', '=', 'order_products.user_id')
       ->join('obats', 'obats.obatid', '=', 'order_products.product_id')
       ->where('obats.apotek_id', '=', $id)
+      ->where('order_products.status','=','1')
       ->orderBy('order_products.created_at', 'desc');
     $order3 = $order3->get();
 
@@ -149,12 +133,74 @@ public function history()
     return view('order', ['order' => $order, 'user' => $users, 'order2' => $order2, 'order3' => $order3]);
 }
 
+
+public function aktiforder()
+{
+    $id = Auth::id();
+    $users = \App\User::all();
+    $order = OrderProduct::all();
+    // $order2 = OrderProduct::where('user_id', '=', $id)->get();
+
+    $order2 = DB::table('obats')
+      ->join('users', 'users.id', '=', 'obats.apotek_id')
+      ->join('order_products', 'order_products.product_id', '=', 'obats.obatid')
+      ->where('order_products.user_id','=', $id)
+      ->where('order_products.status','=','0')
+      ->orderBy('order_products.created_at', 'desc');
+    $order2 = $order2->get();
+
+    // $order3 = DB::table('order_products')
+    //   ->join('users', 'users.id', '=', 'order_products.user_id')
+    //   ->join('obats', 'obats.obatid', '=', 'order_products.product_id')
+    //   ->where('obats.apotek_id', '=', $id)
+    //   ->orderBy('order_products.created_at', 'desc');
+    // $order3 = $order3->get();
+
+    $order3 = DB::table('order_products')
+      ->select('order_products.orderid','obats.namaobat','obats.harga','users.name','order_products.kuantitas','order_products.created_at','order_products.status')
+      ->join('users', 'users.id', '=', 'order_products.user_id')
+      ->join('obats', 'obats.obatid', '=', 'order_products.product_id')
+      ->where('obats.apotek_id', '=', $id)
+      ->where('order_products.status','=','0')
+      ->orderBy('order_products.created_at', 'desc');
+    $order3 = $order3->get();
+
+
+    return view('aktiforder', ['order' => $order, 'user' => $users, 'order2' => $order2, 'order3' => $order3]);
+}
+
+
 public function status($id)
 {
   $order = OrderProduct::findOrFail($id);
   $order->status = '1';
   $order->save();
-  return redirect()->back();
+  return redirect()->back()->with('success', 'Order telah selesai!!');
 }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+      $orderProduct = OrderProduct::findOrFail($id);
+
+      $product = Obat::find($orderProduct->product_id);
+      $num = $product->stok + $orderProduct->kuantitas;
+      $product->stok = $num;
+      $product->save();
+
+      $orderProduct->delete();
+
+      return redirect('aktiforder')->with('success', 'Pemesanan Dibatalkan!');
+    }
+
+
 
 }

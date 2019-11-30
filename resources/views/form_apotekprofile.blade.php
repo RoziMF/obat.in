@@ -13,10 +13,21 @@
         <div class="col-xs-12">
             <!-- /.box-header -->
             <div class="form-title">
-                                </div>
+            </div>
+
+            @if (count($errors) > 0)
+            <div class="alert alert-danger">
+              <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+              </ul>
+            </div>
+            @endif
+
                                 <div class="form-body">
 
-                                    <form class="form-horizontal" method="post" action="{{ route('apotekProfil.update', Auth::user()->id) }}" >
+                                    <form class="form-horizontal" method="post" action="{{ route('apotekProfil.update', $profil->profileid) }}" >
                                       @csrf
                                       @method('PUT')
 
@@ -24,42 +35,49 @@
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Nama Apotek</label>
                                             <div class="col-sm-9">
-                                                <input type="text" name="nama" class="form-control" id="name" value="{{Auth::user()->name}}" >
+                                                <input type="text" name="nama" class="form-control" id="name" value="{{Auth::user()->name}}" readonly>
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Alamat</label>
                                             <div class="col-sm-9">
-                                                <input type="text" name="alamat" class="form-control" id="alamat" value="{{$profil[0]->alamat}}" >
+                                                <input type="text" name="alamat" class="form-control" id="alamat" value="{{$profil->alamat}}" >
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Jam Buka</label>
                                             <div class="col-sm-9">
-                                                <input type="text" name="jam_buka" class="form-control" id="jam_buka" value="{{$profil[0]->jam_buka}}" >
+                                                <input type="text" name="jam_buka" class="form-control" id="jam_buka" value="{{$profil->jam_buka}}" >
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Jam Tutup</label>
                                             <div class="col-sm-9">
-                                                <input type="text" name="jam_tutup" class="form-control" id="jam_tutup" value="{{$profil[0]->jam_tutup}}" >
+                                                <input type="text" name="jam_tutup" class="form-control" id="jam_tutup" value="{{$profil->jam_tutup}}" >
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">Apoteker</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="apoteker" class="form-control" id="apoteker" value="{{$profil->apoteker}}" >
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Latitude</label>
                                             <div class="col-sm-9">
-                                                <input type="text" name="latitude" class="form-control" id="latitude" value="{{$profil[0]->latitude}}">
+                                                <input type="text" name="latitude" class="form-control" id="latitude" value="{{$profil->latitude}}">
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Longitude</label>
                                             <div class="col-sm-9">
-                                                <input type="text" name="longitude" class="form-control" id="longitude" value="{{$profil[0]->longitude}}">
+                                                <input type="text" name="longitude" class="form-control" id="longitude" value="{{$profil->longitude}}">
                                             </div>
                                         </div>
 
@@ -74,11 +92,11 @@
           </div>
           <!-- /.box -->
         </div>
-      </div>
+</div>
 
-    </div>
+</div>
 
-  @endsection
+@endsection
 
   @section('styles')
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css"

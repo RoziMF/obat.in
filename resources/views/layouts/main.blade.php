@@ -38,7 +38,7 @@
                 </button>
 
                 <!-- menu1 -->
-                <li class="navbar"><a href="/home">Beranda</a></li>
+                <li class="navbar"><a href="{{route('home')}}">Beranda</a></li>
 
                 <!-- menu2 -->
                 @if(Auth::user()->akses == '1' )
@@ -55,8 +55,21 @@
                 @if(Auth::user()->akses == '2' )
                 <li class="navbar"><a href="{{route('apotekProfil.index')}}">Profil</a></li>
 
+                @elseif(Auth::user()->akses == '1' )
+                <li class="navbar"><a href="{{route('peopleProfil.index')}}">Profil</a></li>
+
+                @elseif(Auth::user()->akses == '3' )
+                <li class="navbar"><a href="{{route('dokterProfil.index')}}">Profil</a></li>
+
                 @else
 
+                @endif
+
+                <!-- menu4 -->
+                @if(Auth::user()->akses == '3' )
+
+                @else
+                  <li class="navbar"><a href="{{route('aktiforder')}}">Aktif Order</a></li>
                 @endif
 
                 <!-- menu4 -->
@@ -130,6 +143,8 @@
 
         <main class="mt-5">
             <v-container fluid>
+                @include('flash-message')
+
                 @yield('content')
             </v-container>
         </main>

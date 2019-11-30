@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use Auth;
 use App\User;
-use App\ApotekProfile;
+use App\DokterProfile;
 use Illuminate\Http\Request;
 
-class ApotekProfilController extends Controller
+class DokterProfilController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +18,7 @@ class ApotekProfilController extends Controller
     {
       $id = Auth::id();
       $user = User::all();
-      $profil = ApotekProfile::where('user_id', '=', $id)->first();
+      $dprofil = DokterProfile::where('user_id', '=', $id)->first();
       //
       // if (is_null($profil)) {
       //   $profile = new ApotekProfile();
@@ -28,7 +28,7 @@ class ApotekProfilController extends Controller
       //
       // }
 
-      return view('profil', ['profil' => $profil, 'user' => $user]);
+      return view('profil', ['dprofil' => $dprofil, 'user' => $user]);
     }
 
     /**
@@ -73,8 +73,8 @@ class ApotekProfilController extends Controller
     {
       $id = Auth::id();
       $user = \App\User::all();
-      $profil = ApotekProfile::where('user_id', '=', $id)->first();
-      return view('form_apotekprofile', ['profil' => $profil, 'user' => $user]);
+      $dprofil = DokterProfile::where('user_id', '=', $id)->first();
+      return view('form_dokterprofile', ['dprofil' => $dprofil, 'user' => $user]);
     }
 
     /**
@@ -86,28 +86,24 @@ class ApotekProfilController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $messages = [
-          'required' => ':attribute tidak boleh kosong!',
-          'min' => ':attribute terlalu kecil!',
-          'numeric' => ':attribute harus diisi angka!!!',
-        ];
+      $messages = [
+        'required' => ':attribute tidak boleh kosong!',
+        'min' => ':attribute minimal 10 angka!',
+        'numeric' => ':attribute harus diisi angka!!!',
+      ];
 
-        $this->validate($request,[
-            'jam_buka'=>'required',
-            'alamat'=>'required',
-            'jam_tutup'=>'required',
-            'latitude'=>'required',
-            'longitude'=>'required'
-        ],$messages);
+      $this->validate($request,[
+          'nip'=>'required|min:999999999|numeric',
+          'alamatdinas'=>'required',
+          'no_hp'=>'required|min:999999999|numeric'
+      ],$messages);
 
-        $profil = ApotekProfile::findOrFail($id);
-        $profil->alamat = $request->input('alamat');
-        $profil->jam_buka = $request->input('jam_buka');
-        $profil->jam_tutup = $request->input('jam_tutup');
-        $profil->latitude = $request->input('latitude');
-        $profil->longitude = $request->input('longitude');
-        $profil->save();
-        return redirect('apotekProfil');
+      $profil = DokterProfile::findOrFail($id);
+      $profil->alamatdinas = $request->input('alamatdinas');
+      $profil->nip = $request->input('nip');
+      $profil->no_hp = $request->input('no_hp');
+      $profil->save();
+      return redirect('dokterProfil')->with('success', 'Profil Telah Diupdate!');
     }
 
     /**

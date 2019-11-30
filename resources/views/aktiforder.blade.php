@@ -3,11 +3,11 @@
 @section('content')
 @if(Auth::user()->akses == '1')
 <div class="box-header with-border">
-      <h3 class="box-title">Riwayat Order</h3>
+      <h3 class="box-title">Aktif Order</h3>
 </div>
 @else
 <div class="box-header with-border">
-      <h3 class="box-title">Riwayat Order</h3>
+      <h3 class="box-title">Aktif Order</h3>
 </div>
 @endif
 
@@ -26,6 +26,7 @@
                   <th>Tanggal</th>
                   <th>Total</th>
                   <th>Status</th>
+                  <th>Option</th>
                 </tr>
 
                 @foreach($order2 as $key=>$value)
@@ -42,6 +43,13 @@
                     @else
                       Telah Diambil
                     @endif
+                  </td>
+                  <td>
+                    <form action="{{ route('order.destroy', $value->orderid)}}" method="post" id="batal">
+                        @csrf
+                        @method('DELETE')
+                        <button class="btn btn-danger" type="submit">Batal</button>
+                    </form>
                   </td>
                 </tr>
                 @endforeach
@@ -67,6 +75,7 @@
                   <th>Tanggal</th>
                   <th>Total</th>
                   <th>Status</th>
+                  <th>Option</th>
                 </tr>
 
                 @foreach($order3 as $key=>$value)
@@ -83,6 +92,13 @@
                     @else
                       Telah Diambil
                     @endif
+                  </td>
+                  <td>
+                    <form class="" action="{{ route('order.status', $value->orderid) }}" method="post">
+                      @csrf
+                      @method('PUT')
+                        <button class="btn btn-primary" type="submit" >Selesai</button>
+                    </form>
                   </td>
                 </tr>
                 @endforeach

@@ -31,7 +31,10 @@ Route::get('/private-messages/{user}', 'MessageController@privateMessages')->nam
 Route::post('/private-messages/{user}', 'MessageController@sendPrivateMessage')->name('privateMessages.store');
 
 Route::resource('obat','ObatController');
+
 Route::resource('apotekProfil','ApotekProfilController');
+Route::resource('dokterProfil','DokterProfilController');
+Route::resource('peopleProfil','PeopleProfilController');
 
 Route::get('/apotek/{id}', 'ApotekController@index')->name('apotek');
 
@@ -55,4 +58,9 @@ Route::post('/payment', [
             'uses' 	=>	'OrderController@status'
         ]);
 
+Route::get('/aktiforder', 'OrderController@aktiforder')->name('aktiforder');
 Route::get('/order', 'OrderController@history')->name('order');
+Route::delete('/cancel/{id}', [
+        'as'	=>	'order.destroy',
+        'uses' 	=>	'OrderController@destroy'
+    ]);
