@@ -2,9 +2,8 @@
 Dikarenakan ada fitur yang menggunakan vue.js, laravel-mix dll diharapkan yang membaca Readme.md
 
 Untuk Windows
-2. install npm pada direktori project ini dengan cara
-    cd ke Direktori obat.in
-    npm install
+1. install npm pada direktori project ini
+2. npm install
 
 Untuk Linux Ubuntu dll
 1. sudo apt-get install npm
