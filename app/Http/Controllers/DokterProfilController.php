@@ -19,16 +19,16 @@ class DokterProfilController extends Controller
       $id = Auth::id();
       $user = User::all();
       $dprofil = DokterProfile::where('user_id', '=', $id)->first();
-      //
-      // if (is_null($profil)) {
-      //   $profile = new ApotekProfile();
-      //   $profile->user_id = $id;
-      //   $profile->save();
-      // }else {
-      //
-      // }
 
-      return view('profil', ['dprofil' => $dprofil, 'user' => $user]);
+      if ($dprofil==false) {
+        $dprofil = new PeopleProfile();
+        $dprofil->user_id = $id;
+        $dprofil->save();
+        return view('profil', ['dprofil' => $dprofil, 'user' => $user]);
+      }else {
+        return view('profil', ['dprofil' => $dprofil, 'user' => $user]);
+      }
+      
     }
 
     /**

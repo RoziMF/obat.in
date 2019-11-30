@@ -19,16 +19,17 @@ class PeopleProfilController extends Controller
       $id = Auth::id();
       $user = User::all();
       $pprofil = PeopleProfile::where('user_id', '=', $id)->first();
-      //
-      // if (is_null($profil)) {
-      //   $profile = new ApotekProfile();
-      //   $profile->user_id = $id;
-      //   $profile->save();
-      // }else {
-      //
-      // }
 
-      return view('profil', ['pprofil' => $pprofil, 'user' => $user]);
+      if ($pprofil==false) {
+        $pprofil = new PeopleProfile();
+        $pprofil->user_id = $id;
+        $pprofil->save();
+        return view('profil', ['pprofil' => $pprofil, 'user' => $user]);
+      }else {
+        return view('profil', ['pprofil' => $pprofil, 'user' => $user]);
+      }
+
+
     }
 
     /**

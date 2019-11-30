@@ -19,16 +19,16 @@ class ApotekProfilController extends Controller
       $id = Auth::id();
       $user = User::all();
       $profil = ApotekProfile::where('user_id', '=', $id)->first();
-      //
-      // if (is_null($profil)) {
-      //   $profile = new ApotekProfile();
-      //   $profile->user_id = $id;
-      //   $profile->save();
-      // }else {
-      //
-      // }
 
-      return view('profil', ['profil' => $profil, 'user' => $user]);
+      if ($profil==false) {
+        $profil = new PeopleProfile();
+        $profil->user_id = $id;
+        $profil->save();
+        return view('profil', ['profil' => $profil, 'user' => $user]);
+      }else {
+        return view('profil', ['profil' => $profil, 'user' => $user]);
+      }
+
     }
 
     /**

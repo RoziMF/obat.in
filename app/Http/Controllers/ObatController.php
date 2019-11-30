@@ -62,7 +62,7 @@ class ObatController extends Controller
           'harga' => $request->harga
         ]);
 
-        return redirect('obat')->with('success', 'Data stok telah ditambahkan');
+        return redirect('obat')->with('success', 'Data Obat telah ditambahkan');
 
       // $obat = new Obat();
       // $obat->apotek_id = $request->input('apotekid');
@@ -105,12 +105,24 @@ class ObatController extends Controller
      */
     public function update(Request $request, $id)
     {
+      $messages = [
+        'required' => 'harap semua kolom diisi (:attribute)!',
+        'min' => ':attribute terlalu kecil!',
+        'numeric' => ':attribute harap diisi dengan data yang sesuai!',
+      ];
+
+      $this->validate($request,[
+            'nama'=>'required',
+            'stok'=>'required|numeric|min:1',
+            'harga'=>'required|numeric|min:1'
+        ], $messages);
+
       $obat = Obat::findOrFail($id);
       $obat->namaobat = $request->input('nama');
       $obat->stok = $request->input('stok');
       $obat->harga = $request->input('harga');
       $obat->save();
-      return redirect('obat');
+      return redirect('obat')->with('success', 'Data Obat telah diupdate');
     }
 
     /**

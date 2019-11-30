@@ -23,6 +23,7 @@
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <!-- <link href="{{ asset('css/bootstrap-glyphicons.css') }}" rel="stylesheet"> -->
     <!-- <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet"> -->
+
     @yield('styles')
 </head>
 <body>
@@ -77,6 +78,12 @@
 
                 @else
                   <li class="navbar"><a href="{{route('order')}}">Riwayat Order</a></li>
+                @endif
+
+                @if(Auth::user()->akses == '4' )
+                    <li class="navbar"><a href="{{route('order')}}">Daftarkan Dokter</a></li>
+                @else
+
                 @endif
 
                 @if(Auth::user()->akses == '1' )
@@ -151,5 +158,6 @@
     </div>
 
     @stack('scripts')
+
 </body>
 </html>

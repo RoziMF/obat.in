@@ -113,13 +113,6 @@ public function history()
       ->orderBy('order_products.created_at', 'desc');
     $order2 = $order2->get();
 
-    // $order3 = DB::table('order_products')
-    //   ->join('users', 'users.id', '=', 'order_products.user_id')
-    //   ->join('obats', 'obats.obatid', '=', 'order_products.product_id')
-    //   ->where('obats.apotek_id', '=', $id)
-    //   ->orderBy('order_products.created_at', 'desc');
-    // $order3 = $order3->get();
-
     $order3 = DB::table('order_products')
       ->select('order_products.orderid','obats.namaobat','obats.harga','users.name','order_products.kuantitas','order_products.created_at','order_products.status')
       ->join('users', 'users.id', '=', 'order_products.user_id')
@@ -129,8 +122,16 @@ public function history()
       ->orderBy('order_products.created_at', 'desc');
     $order3 = $order3->get();
 
+    $order4 = DB::table('order_products')
+      ->select('order_products.orderid','obats.namaobat','obats.harga','users.name','order_products.kuantitas','order_products.created_at','order_products.status')
+      ->join('users', 'users.id', '=', 'order_products.user_id')
+      ->join('obats', 'obats.obatid', '=', 'order_products.product_id')
+      ->where('order_products.status','=','1')
+      ->orderBy('order_products.created_at', 'desc');
+    $order4 = $order4->get();
 
-    return view('order', ['order' => $order, 'user' => $users, 'order2' => $order2, 'order3' => $order3]);
+
+    return view('order', ['order' => $order, 'user' => $users, 'order2' => $order2, 'order3' => $order3, 'order4' => $order4]);
 }
 
 
@@ -149,13 +150,6 @@ public function aktiforder()
       ->orderBy('order_products.created_at', 'desc');
     $order2 = $order2->get();
 
-    // $order3 = DB::table('order_products')
-    //   ->join('users', 'users.id', '=', 'order_products.user_id')
-    //   ->join('obats', 'obats.obatid', '=', 'order_products.product_id')
-    //   ->where('obats.apotek_id', '=', $id)
-    //   ->orderBy('order_products.created_at', 'desc');
-    // $order3 = $order3->get();
-
     $order3 = DB::table('order_products')
       ->select('order_products.orderid','obats.namaobat','obats.harga','users.name','order_products.kuantitas','order_products.created_at','order_products.status')
       ->join('users', 'users.id', '=', 'order_products.user_id')
@@ -165,8 +159,15 @@ public function aktiforder()
       ->orderBy('order_products.created_at', 'desc');
     $order3 = $order3->get();
 
+    $order4 = DB::table('order_products')
+      ->select('order_products.orderid','obats.namaobat','obats.harga','users.name','order_products.kuantitas','order_products.created_at','order_products.status')
+      ->join('users', 'users.id', '=', 'order_products.user_id')
+      ->join('obats', 'obats.obatid', '=', 'order_products.product_id')
+      ->where('order_products.status','=','0')
+      ->orderBy('order_products.created_at', 'desc');
+    $order4 = $order4->get();
 
-    return view('aktiforder', ['order' => $order, 'user' => $users, 'order2' => $order2, 'order3' => $order3]);
+    return view('aktiforder', ['order' => $order, 'user' => $users, 'order2' => $order2, 'order3' => $order3, 'order4' => $order4]);
 }
 
 
