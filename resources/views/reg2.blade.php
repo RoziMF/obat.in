@@ -2,15 +2,25 @@
 
 @section('content')
 
+<!-- @if (count($errors) > 0)
+<div class="alert alert-danger">
+  <ul>
+    @foreach ($errors->all() as $error)
+    <li>{{ $error }}</li>
+    @endforeach
+  </ul>
+</div>
+@endif -->
+
 <div class="card-body">
-    <form method="POST" action="{{ route('register') }}" aria-label="{{ __('Register') }}">
+    <form method="POST" action="{{ route('regstore') }}" aria-label="{{ __('Register') }}">
         @csrf
 
         <div class="form-group row">
             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
             <div class="col-md-6">
-                <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
+                <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}"  autofocus>
 
                 @if ($errors->has('name'))
                     <span class="invalid-feedback" role="alert">
@@ -24,7 +34,7 @@
             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
             <div class="col-md-6">
-                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
+                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" >
 
                 @if ($errors->has('email'))
                     <span class="invalid-feedback" role="alert">
@@ -38,7 +48,7 @@
             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
             <div class="col-md-6">
-                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" >
 
                 @if ($errors->has('password'))
                     <span class="invalid-feedback" role="alert">
@@ -52,11 +62,20 @@
             <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
 
             <div class="col-md-6">
-                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" >
             </div>
         </div>
 
-        <input type="hidden" name="akses" value="3">
+        <div class="form-group row">
+            <label class="col-md-4 col-form-label text-md-right">Akses</label>
+
+            <div class="col-md-6">
+              <select name="akses" class="form-control">
+                <option value="3">Dokter</option>
+                <option value="2">Apotek</option>
+              </select>
+            </div>
+        </div>
 
         <div class="form-group row mb-0">
             <div class="col-md-6 offset-md-4">

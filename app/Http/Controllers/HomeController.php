@@ -99,9 +99,26 @@ class HomeController extends Controller
         return view('search');
     }
 
-    public function regdokter()
+    public function reguser()
     {
-        return view('regdokter');
+        return view('reg2');
+    }
+
+    public function userstore(Request $request)
+    {
+        $this->validate($request,[
+          'name' => 'required|string|max:255',
+          'email' => 'required|string|email|max:255|unique:users',
+          'password' => 'required|string|min:6|confirmed',
+          'akses' => 'required',
+        ]);
+
+        $request['password'] = bcrypt($request->password);
+
+        $user = User::create($request->all());
+
+        return redirect(route('reguser'));
+
     }
 
 }

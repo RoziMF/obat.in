@@ -18,7 +18,9 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@home')->name('home');
-Route::get('/registerdokter', 'HomeController@regdokter')->name('regdokter');
+Route::get('/registeruser', 'HomeController@reguser')->name('reguser');
+Route::post('/registerstore', 'HomeController@userstore')->name('regstore');
+
 Route::get('/konsultasi', 'HomeController@konsultasi')->name('konsultasi');
 
 Route::get('/search', 'SearchController@index')->name('search');

@@ -81,7 +81,7 @@
                 @endif
 
                 @if(Auth::user()->akses == '4' )
-                    <li class="navbar"><a href="{{route('order')}}">Daftarkan Dokter</a></li>
+                    <li class="navbar"><a href="{{route('reguser')}}">Daftarkan Dokter</a></li>
                 @else
 
                 @endif
